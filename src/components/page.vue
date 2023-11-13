@@ -1,6 +1,6 @@
 <script setup>
 
-import { ref, onMounted, onBeforeMount } from "vue";
+import { ref, computed, onMounted, onBeforeMount } from "vue";
 const genres = ref([
     {
         "id": 28,
@@ -83,13 +83,14 @@ const dataList = ref(null);
 const movieDetail = ref(null);
 const movieId = ref(330081);
 
-// const filter = computed(() => {
-//     if (dataList.value.length > 1) {
-//         return
-//     } else {
-//         return dataList.value = null
-//     }
-// })
+const getOffice = computed(() => {
+    let price = movieDetail.value.revenue.toString()
+    let price1 = price.substring(0, 2)
+    let price2 = price.substring(2, 5)
+    let price3 = price.substring(5, 8)
+
+    return `$${price1},${price2},${price3}`
+})
 
 const getId = (data) => {
     console.log(data);
@@ -191,7 +192,7 @@ onMounted(() => {
                         </div>
                         <div class="office">
                             <span>Box Office:</span>
-                            <p v-if="movieDetail.revenue">${{ movieDetail.revenue }}</p>
+                            <p v-if="movieDetail.revenue">{{ getOffice }}</p>
                             <p v-else>-</p>
                         </div>
                         <div class="average">
@@ -360,7 +361,7 @@ onMounted(() => {
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
                     grid-template-rows: repeat(2, 1fr);
-                    gap: 50px;
+                    gap: 10px;
 
                     p {
                         font-size: 1.5rem;
