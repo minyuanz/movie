@@ -85,11 +85,16 @@ const movieId = ref(330081);
 
 const getOffice = computed(() => {
     let price = movieDetail.value.revenue.toString()
-    let price1 = price.substring(0, 2)
-    let price2 = price.substring(2, 5)
-    let price3 = price.substring(5, 8)
+    let price1 = price.substring(0, 3)
+    let price2 = price.substring(3, 6)
+    let price3 = price.substring(6, 9)
 
-    return `$${price1},${price2},${price3}`
+    if (!price3) {
+        return `$${price1},${price2}`
+    } else {
+        return `$${price1},${price2},${price3}`
+    }
+
 })
 
 const getId = (data) => {
