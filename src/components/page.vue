@@ -157,6 +157,9 @@ onMounted(() => {
         <div class="ctx">
             <div class="search">
                 <!-- <h1>title</h1> -->
+                <div class="icon" @click="fetchData">
+                    <font-awesome-icon :icon="['fas', 'magnifying-glass']" size="xl" style="color: #fff;" />
+                </div>
                 <img class="logo" src="https://raw.githubusercontent.com/zisiszikos/the-movie-db-example/master/tmdb.png"
                     alt="">
                 <input type="text" placeholder="Search Movie Title.." v-model="search" @keyup.enter="fetchData"
@@ -264,11 +267,19 @@ onMounted(() => {
             padding: 50px 0;
             display: flex;
             position: relative;
-
             // border: 1px solid red;
+
             .logo {
                 width: 150px;
                 vertical-align: bottom;
+            }
+
+            .icon {
+                // border: 1px solid red;
+                position: absolute;
+                bottom: 40%;
+                right: 0;
+                cursor: pointer;
             }
 
             input {
